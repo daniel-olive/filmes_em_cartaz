@@ -1,0 +1,77 @@
+* {
+  margin: 0;
+  color: #fff;
+  background-color: #000;
+}
+.container{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 0;
+}
+.container .btnTitulo{
+  margin: 30px 0;
+}
+.container .btnTitulo h4{
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  margin: 30px 0;
+}
+.btnCarregarFilmes{
+  background-color: rgb(7, 84, 226);
+  color: #fff;
+  border: 1px solid #000;
+  border-radius: 5px;
+  padding: 10px;
+  margin-bottom: 20px;
+}
+
+.container .FilmesCartaz{
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  gap: 30px;
+  margin: 0px 40px;
+}
+.container .FilmesCartaz .map{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  border: 0px solid #fff;
+}
+.tituloo{
+  padding: 20px;
+  text-align: center;
+}
+.FilmesCartaz .map .square{
+  display: flex;
+  height: 100%;
+}
+.FilmesCartaz .map .square img{
+  width: 100%;
+}
+
+
+@media (max-width: 1025px) {
+  .container .FilmesCartaz{
+      grid-template-columns: repeat(4, 1fr);
+      gap: 30px;
+  }
+}
+@media (max-width: 770px) {
+  .container .FilmesCartaz{
+      grid-template-columns: 1fr 1fr;
+      gap: 30px;
+  }
+}
+@media (max-width: 425px) {
+  .container .FilmesCartaz{
+      grid-template-columns: 1fr;
+      gap: 30px
+  }
+  .container .FilmesCartaz .map{
+      border: 1px solid #fff;
+  }
+  
+}
