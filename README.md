@@ -10,7 +10,7 @@ Utilizei o CSS modules.
 
 O projeto estar responsivo.
 
-# Visializar o projeto [site](https://daniel-olive.github.io/filmes_em_cartaz/).
+# Visializar o projeto [site](https://daniel-olive.github.io/filmes_em_cartaz_simples/).
 
 # Instalçao:
 
