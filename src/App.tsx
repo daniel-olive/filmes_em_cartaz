@@ -1,28 +1,35 @@
 import { useEffect, useState } from "react";
-import { Movie } from './types/Movie';
-
-import styles from './App.module.css';
+import { Movie } from "./types/Movie";
+import styles from "./App.module.css";
+import { dataFilmes } from "./utils/dataFilmes";
 
 const App = () => {
     const [movies, setMovies] = useState<Movie[]>([]);
+    const baseURL = "https://www.omdbapi.com/?i=";
+    const chaveKey = "&apikey=f8dbfaa";
 
     useEffect(() => {
         loadMovies();
-    }, [])
+    }, []);
 
     const loadMovies = () => {
-        fetch('https://api.b7web.com.br/cinema/')
-            .then((response) => {
-                return response.json();
+        const requests = dataFilmes.map((filme) => {
+            return fetch(`${baseURL}${filme.id}${chaveKey}`)
+                .then((response) => response.json());
+        });
+    
+        Promise.all(requests)
+            .then((moviesData) => {
+                setMovies(moviesData);
+                console.log(moviesData)
             })
-            .then((json) => {
-                setMovies(json);
+            .catch((error) => {
+                console.error('Erro ao carregar filmes:', error);
             });
-    }
+    };
 
     return (
         <div className={styles.container}>
-
             <div className={styles.btnTitulo}>
                 <h1>Filmes em Cartaz</h1>
                 <h4>Total de Filmes: {movies.length}</h4>
@@ -30,18 +37,19 @@ const App = () => {
 
             <div className={styles.FilmesCartaz}>
                 {movies.map((item, index) => (
-                    <div className={styles.map}>
+                    <div key={index} className={styles.map}>
                         <div className={styles.square}>
-                            <img src={item.avatar} style={{  display: 'block' }} />
+                            <img
+                                src={item.Poster}
+                                style={{ display: "block" }}
+                            />
                         </div>
-                        <div className={styles.tituloo}>{item.titulo}</div>
+                        <div className={styles.tituloo}>{item.Title}</div>
                     </div>
-
                 ))}
             </div>
-
         </div>
-    )
+    );
 };
 
 export default App;
